@@ -27,16 +27,15 @@ public class PlayerController : MonoBehaviour
         if (_forwardInput < 0)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * _selectedCar.BackwardSpeed * _forwardInput);   
-        
-            // Moves the car based on horizontal input.
-            transform.Rotate(Vector3.down * Time.deltaTime * _selectedCar.TurnSpeed * _horizontalInput);   
         }
         else
         {
             transform.Translate(Vector3.forward * Time.deltaTime * _selectedCar.Speed * _forwardInput);   
-        
-            // Moves the car based on horizontal input.
-            transform.Rotate(Vector3.up * Time.deltaTime * _selectedCar.TurnSpeed * _horizontalInput);   
         }
+        
+        // Turn (Y-axis only)
+        float turnSpeed = _selectedCar.TurnSpeed;
+        float turn = _horizontalInput * turnSpeed * Time.deltaTime;
+        transform.Rotate(0, turn, 0);
     }
 }

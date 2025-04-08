@@ -8,6 +8,9 @@ public class PlayerDataService : MonoBehaviour
     
     public string PlayerName { get; private set; }
     public string PlayerSelectedCarName { get; private set; }
+    public int PlayerScore { get; private set; }
+    
+    public Action<int> OnScoreChanged;
     
     public void Awake()
     {
@@ -24,6 +27,12 @@ public class PlayerDataService : MonoBehaviour
     public void SetPlayerName(string playerName)
     {
         PlayerName = playerName;
+    }
+    
+    public void AddPlayerScore(int score)
+    {
+        PlayerScore += score;
+        OnScoreChanged?.Invoke(PlayerScore);
     }
     
     public void UpdatePlayerCarName(string carName)
